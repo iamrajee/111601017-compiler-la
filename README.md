@@ -10,4 +10,4 @@ BATCH    -   2016
 
 ### Who do I talk to? ###
 
-* Repo owner : 111601017@mail.iitpkd.ac.in
+* Repo owner : 111601017@smail.iitpkd.ac.in
