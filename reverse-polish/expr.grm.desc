@@ -1,0 +1,204 @@
+
+state 0:
+
+	PROGRAM : . EXPS 
+	PROGRAM : . EXPS NEWLINE 
+
+	CONST	shift 4
+	LPARAN	shift 3
+
+	EXP	goto 2
+	EXPS	goto 1
+	PROGRAM	goto 16
+
+	.	reduce by rule 2
+
+
+state 1:
+
+	PROGRAM : EXPS .  (reduce by rule 0)
+	PROGRAM : EXPS . NEWLINE 
+
+	NEWLINE	shift 5
+
+
+	.	reduce by rule 0
+
+
+state 2:
+
+	EXP : EXP . PLUS EXP 
+	EXP : EXP . MINUS EXP 
+	EXP : EXP . MUL EXP 
+	EXPS : EXP . NEWLINE EXPS 
+
+	PLUS	shift 9
+	MINUS	shift 8
+	MUL	shift 7
+	NEWLINE	shift 6
+
+
+	.	error
+
+
+state 3:
+
+	EXP : LPARAN . EXP RPARAN 
+
+	CONST	shift 4
+	LPARAN	shift 3
+
+	EXP	goto 10
+
+	.	error
+
+
+state 4:
+
+	EXP : CONST .  (reduce by rule 4)
+
+
+
+	.	reduce by rule 4
+
+
+state 5:
+
+	PROGRAM : EXPS NEWLINE .  (reduce by rule 1)
+
+
+
+	.	reduce by rule 1
+
+
+state 6:
+
+	EXPS : EXP NEWLINE . EXPS 
+
+	CONST	shift 4
+	LPARAN	shift 3
+
+	EXP	goto 2
+	EXPS	goto 11
+
+	.	reduce by rule 2
+
+
+state 7:
+
+	EXP : EXP MUL . EXP 
+
+	CONST	shift 4
+	LPARAN	shift 3
+
+	EXP	goto 12
+
+	.	error
+
+
+state 8:
+
+	EXP : EXP MINUS . EXP 
+
+	CONST	shift 4
+	LPARAN	shift 3
+
+	EXP	goto 13
+
+	.	error
+
+
+state 9:
+
+	EXP : EXP PLUS . EXP 
+
+	CONST	shift 4
+	LPARAN	shift 3
+
+	EXP	goto 14
+
+	.	error
+
+
+state 10:
+
+	EXP : EXP . PLUS EXP 
+	EXP : EXP . MINUS EXP 
+	EXP : EXP . MUL EXP 
+	EXP : LPARAN EXP . RPARAN 
+
+	PLUS	shift 9
+	MINUS	shift 8
+	MUL	shift 7
+	RPARAN	shift 15
+
+
+	.	error
+
+
+state 11:
+
+	EXPS : EXP NEWLINE EXPS .  (reduce by rule 3)
+
+
+
+	.	reduce by rule 3
+
+
+state 12:
+
+	EXP : EXP . PLUS EXP 
+	EXP : EXP . MINUS EXP 
+	EXP : EXP . MUL EXP 
+	EXP : EXP MUL EXP .  (reduce by rule 7)
+
+
+
+	.	reduce by rule 7
+
+
+state 13:
+
+	EXP : EXP . PLUS EXP 
+	EXP : EXP . MINUS EXP 
+	EXP : EXP MINUS EXP .  (reduce by rule 6)
+	EXP : EXP . MUL EXP 
+
+	MUL	shift 7
+
+
+	.	reduce by rule 6
+
+
+state 14:
+
+	EXP : EXP . PLUS EXP 
+	EXP : EXP PLUS EXP .  (reduce by rule 5)
+	EXP : EXP . MINUS EXP 
+	EXP : EXP . MUL EXP 
+
+	MUL	shift 7
+
+
+	.	reduce by rule 5
+
+
+state 15:
+
+	EXP : LPARAN EXP RPARAN .  (reduce by rule 8)
+
+
+
+	.	reduce by rule 8
+
+
+state 16:
+
+
+	EOF	accept
+
+
+	.	error
+
+16 of 41 action table entries left after compaction
+9 goto table entries
