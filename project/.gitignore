@@ -1,0 +1,6 @@
+.cm
+*.grm.desc
+*.grm.sig
+*.grm.sml
+*.lex.sml
+*.x86-linux
