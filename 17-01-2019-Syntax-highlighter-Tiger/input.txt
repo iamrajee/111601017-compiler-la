@@ -1,7 +1,6 @@
-if array  then else while for
-34353
-+324 -3432
-rajendra
-4+5 = 9
-,"|":"|";"|"("|")"|"["|"]"|"{"|"}"|"."|"+"|"-"|"*"|"/"|"="|"<>"|"<"|"<="|">"|">="|"&"|"|"|":=";
-############
+if array  then else while for           /*=> Keywords*/
+0123456789                              /*=> digits*/
+/* this is
+multi-line /* and nested */  comment */
+this is string
+,:;()[]{}.+-*/=<><<=>>=&:=              /*=> Symbols*/
