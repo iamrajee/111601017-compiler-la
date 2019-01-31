@@ -8,10 +8,8 @@ val  lineNum  = ref 0 (*variable to store line no.*)
 val  nestedloopNum  = ref 0
 val prevLineCol = ref 0 (*variable to store previous line column no.*)
 (*
-<COMMENT> "*/"         => (nestedloopNum := !nestedloopNum-1;if (!nestedloopNum=0) then (YYBEGIN INITIAL); Tokens_struct.COMMENT(yytext,!lineNum,yypos-(!prevLineCol)));
-*)
-(*
-<COMMENT> "*/"         => (YYBEGIN INITIAL; nestedloopNum := !nestedloopNum-1; Tokens_struct.COMMENT(yytext,!lineNum,yypos-(!prevLineCol)));
+<INITIAL> "then"   		=> (Tokens_struct.KEYWORD(yytext ^ "\n"^ "\t",!lineNum,yypos-(!prevLineCol)));
+<INITIAL> "else"   		=> (Tokens_struct.KEYWORD("\n" ^ yytext ^ "\n"^ "\t",!lineNum,yypos-(!prevLineCol)));
 *)
 end (* end of user routines *)
 exception LexError (* raised if illegal leaf action tried *)
