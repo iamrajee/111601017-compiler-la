@@ -1,0 +1,6 @@
+if array  then else while for           /*=> Keywords*/
+0123456789                              /*=> digits*/
+/* this is
+multi-line /* and nested */  comment */
+this is string
+,:;()[]{}.+-*/=<><<=>>=&:=              /*=> Symbols*/
