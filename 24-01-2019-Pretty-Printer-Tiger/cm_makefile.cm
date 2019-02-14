@@ -1,8 +1,0 @@
-Group is
-
-Parser_struct.sml
-tokens_sig.sig
-tokens_struct.sml
-lexer.lex.sml
-$/smlnj-lib.cm
-$/basis.cm
