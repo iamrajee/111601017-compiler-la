@@ -17,12 +17,12 @@ fun print_expression (Ast.INT x) = print (Int.toString (x))
                 )
 | 	print_expression (Ast.LET (x, y)) =
 			(	indent := !indent + 1;	
-				print ("let" ^ new_line(!indent));
+				print ("\027[31m"^"let"^"\027[0m" ^ new_line(!indent));
 				print_decs (x);
-				print ("in" ^ new_line (!indent));	
+				print ("\027[31m"^"in"^"\027[0m" ^ new_line (!indent));	
 				print_exps (y);
 				indent := !indent - 1;
-				print ("end")
+				print ("\027[31m"^"end"^"\027[0m")
 
 			)
 | 	print_expression (Ast.ID x) =
@@ -30,15 +30,15 @@ fun print_expression (Ast.INT x) = print (Int.toString (x))
 		)
 | 	print_expression (Ast.FUNC(a, b)) = 
 	(
-		print (a ^ " (");
+		print ("\027[32m"^a^"\027[0m" ^ " (");
 		print_expcomm (b);
 		print (")")
 	)
 | 	print_expression (Ast.IF(a, b)) = 
 	(
-		print ("if (");
+		print ("\027[31m"^"if"^"\027[0m"^" (");
 		print_expression (a);
-		print (") then (");
+		print (" ) "^"\027[31m"^"then"^"\027[0m"^" (");
 		indent := !indent + 1;
 		print (new_line(!indent));
 		print_expression (b);
@@ -47,15 +47,15 @@ fun print_expression (Ast.INT x) = print (Int.toString (x))
 	)
 | 	print_expression (Ast.IFELSE(a, b, c)) = 
 	(
-		print ("if (");
+		print ("\027[31m"^"if"^"\027[0m"^" (");
 		print_expression (a);
-		print (") then (");
+		print (" ) "^"\027[31m"^"then"^"\027[0m"^" (");
 		indent := !indent + 1;
 		print (new_line(!indent));
 		print_expression (b);
 		indent := !indent - 1;
 		print (new_line(!indent));
-		print (") else (");
+		print (") "^"\027[31m"^"else"^"\027[0m"^" (");
 		indent := !indent + 1;
 		print (new_line(!indent));
 		print_expression (c);
@@ -77,7 +77,7 @@ and
 
 print_exps (x::exp_lst)   =
     (   print_expression (x);
-        if (null exp_lst) then () else print (";");
+        if (null exp_lst) then () else print ("\027[33m"^";"^"\027[0m");
         print (new_line(!indent));
         print_exps(exp_lst))
 |   print_exps []   = (print (bktab))
@@ -86,7 +86,7 @@ and
 
 print_decs (x :: y)		=
 	(	print_dec(x);
-		if (null y) then print ("") else print (";");
+		if (null y) then print ("") else print ("\027[33m"^";"^"\027[0m");
 		print (new_line(!indent));
 		print_decs(y)
 	)
@@ -95,11 +95,11 @@ print_decs (x :: y)		=
 and 
 
 print_dec (Ast.VARDEC(x, y)) = 
-	(	print ("var " ^ x ^ " := ");
+	(	print ("\027[34m"^"var "^"\027[0m" ^ x ^ " := ");
 	 	print_expression(y)
 	)
 
 fun compile []        = ()
-  | compile (x :: xs) = (print_expression x ; print (";" ^ new_line (!indent)) ; compile xs)
+  | compile (x :: xs) = (print_expression x ; print ("\027[33m"^";"^"\027[0m" ^ new_line (!indent)) ; compile xs)
 
 end
