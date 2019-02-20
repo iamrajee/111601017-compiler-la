@@ -1,6 +1,0 @@
-if (rajendra = 87)  then true else false           /*=> Keywords*/
-0123456789                              /*=> digits*/
-/* this is
-multi-line /* /*and nested*/ */  comment */
-this is string
-,:;()[]{}.+-*/=<><<=>>=&:=              /*=> Symbols*/
