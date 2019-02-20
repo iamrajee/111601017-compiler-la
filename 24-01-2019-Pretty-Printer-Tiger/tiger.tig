@@ -1,7 +1,22 @@
+/*------------------------IF-ELSE-----------------------*/
+if 4 + 2 then 3 - 1;
+if 4 + 2 then if 4 + 2 then 3 - 1;
+if 4 + 2 then 3 - 1 else if 4 + 2 then 3 - 1 else if 4 + 2 then if 4 + 2 then 3 - 1 else 4 - 5 else 4 - 5;
+
+/*------------------------EXPRESIONS-----------------------*/
 2      + 3      ;
 3 -          4 +    5 -     6;
 4 - 6 +     2 - 3;
 
+
+/*
+	THIS IS 
+	/*NESTED*/
+	MULTI-LINE COMMENT
+*/
+
+
+/*------------------------LET-----------------------*/
 let 
 	var    a :=  2     + 3;
 	var b    :=    4    - 4;
@@ -9,22 +24,20 @@ let
 in 
 	a    +   b    ;
 end;
-/*
-	var    a :=  2     + 3
-	/*var b    :=    4    - 4
-	var    c := 3 -      2 
-in 
-			let 
-		var a		 := 2 + 3
-			in 
-		a - b;
-	end;  
-	a    +   b    ;*/
-end;
-*/
 
+/*------------------------FUNCTION-----------------------*/
 call (3 - 3     , 4 +      a- 6);
 
+/*------------------------WHITESPACES-----------------------*/
+
+
+
+
+
+
+
+
+/*------------------------NESTED LET AND FUNCTIONS-----------------------*/
 let 
 	var    a :=  2     + 3;
 	var b    :=    4    - 4;
@@ -40,12 +53,3 @@ call (3 - 3     , 4 +      a- 6); call (3 - 3     , 4 +      a- 6);
 	end;  
 	a    +   b    ;
 end;
-
-
-if 4 + 2 then 3 - 1;
-
-if 4 + 2 then if 4 + 2 then 3 - 1;
-
-if 4 + 2 then 3 - 1 else if 4 + 2 then 3 - 1 else if 4 + 2 then if 4 + 2 then 3 - 1 else 4 - 5 else 4 - 5;
-
-
