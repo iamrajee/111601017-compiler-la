@@ -26,7 +26,7 @@ fun print_expression (Ast.INT x) = print (Int.toString (x))
 
 			)
 | 	print_expression (Ast.ID x) =
-		(print (x)
+		(print ("\027[1;37m" ^ x ^ "\027[0m")
 		)
 | 	print_expression (Ast.FUNC(a, b)) = 
 	(
