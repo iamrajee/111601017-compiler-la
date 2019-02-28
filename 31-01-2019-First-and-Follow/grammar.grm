@@ -1,0 +1,34 @@
+%%
+%term	EOF
+	| SEMICOLON | PRODUCTION | ASSIGN | COMMA
+	| OR | SYMBOLS | TOKENS | TOK | SYM 
+
+
+%nonterm 	init		of Ast.exp list
+		| 	program 	of Ast.exp list
+	
+%pos int
+%verbose
+
+%eop EOF
+%noshift EOF
+
+%left COMMA
+%left SEMICOLON
+
+%name Grammar
+
+%%
+
+init	: 	program					(program)
+
+program	:	exp SEMICOLON program	(exp::program)
+		|							([])
+
+exp     :   INT                     (Ast.INT(INT))
+		| 	ID 						(Ast.ID(ID))
+        |   exp PLUS exp            (Ast.BINOP(exp1,Ast.PLUS,exp2))
+
+
+
+
