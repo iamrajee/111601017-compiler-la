@@ -1,4 +1,3 @@
-mllex tiger.lex
-mlyacc tiger.grm
-mlton source.mlb
-./source tiger.tig
+#!/bin/bash
+
+sml grammar.sml first.sml

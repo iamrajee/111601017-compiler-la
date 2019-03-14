@@ -1,3 +1,5 @@
+use "grammar.sml";
+
 val FIRST : AtomSet.set AtomMap.map ref = ref AtomMap.empty;
 val FOLLOW : AtomSet.set AtomMap.map ref = ref AtomMap.empty;
 val NULLABLE : bool AtomMap.map ref = ref AtomMap.empty;
@@ -13,17 +15,17 @@ fun is_nullable (x :: xs) =
     (
         is_null (x) andalso is_nullable (xs)
     )
-| is_nullable ([]) = 
+|   is_nullable ([]) = 
     (
         true
     );
 
 fun printAtomList (x :: xs) = 
     (
-        print (Atom.toString (x));
+        print (Atom.toString (x) ^ " ");
         printAtomList (xs)
     )
-| printAtomList ([]) = 
+|   printAtomList ([]) = 
     (
         print(" ")
     );
@@ -50,9 +52,18 @@ fun print_prods x =
                 let
                     val rhs = ref (List.hd(!prods))
                 in
-                    printAtomList (!rhs)
+                    if (null (!rhs)) then (
+                        print ("ε ")
+                    ) else (
+                        printAtomList (!rhs)
+                    )
                 end;
-                prods := tl (!prods)
+                prods := tl (!prods);
+                if (null (!prods)) then (
+                        
+                ) else (
+                    print ("| ")
+                )
             );
             print ("\n")
         end
@@ -75,7 +86,7 @@ fun calculate_first x rhs =
             val k = List.length(!rhs)
             val c = ((AtomMap.remove (!FIRST , x)) handle LibBase.NotFound => (!FIRST, AtomSet.empty))
             val (mp , el) = (ref (#1 c) , ref (#2 c))
-            val old_el = el
+            val old_el = !el
         in 
             FIRST := !mp;
             while (!i < k andalso !still_nullable) do (
@@ -93,7 +104,7 @@ fun calculate_first x rhs =
                 end;
                 i := !i + 1
             );
-            if (AtomSet.equal (!el, !old_el)) then () 
+            if (AtomSet.equal (!el, old_el)) then () 
             else (
                 change := true
              );
@@ -106,11 +117,11 @@ fun add_to_follow_1 yi x =
         let 
             val c = ((AtomMap.remove (!FOLLOW , yi)) handle LibBase.NotFound => (!FOLLOW, AtomSet.empty))
             val (mp , el) = (ref (#1 c) , ref (#2 c))
-            val old_el = el
+            val old_el = !el
         in 
             FOLLOW := !mp;
             el := AtomSet.union (!el, AtomMap.lookup(!FOLLOW, x) handle NotFound => (AtomSet.empty));
-            if (AtomSet.equal (!el, !old_el)) then () 
+            if (AtomSet.equal (!el, old_el)) then () 
             else (
                 change := true
             );
@@ -123,11 +134,11 @@ fun add_to_follow_2 yi x =
         let 
             val c = ((AtomMap.remove (!FOLLOW , yi)) handle LibBase.NotFound => (!FOLLOW, AtomSet.empty))
             val (mp , el) = (ref (#1 c) , ref (#2 c))
-            val old_el = el
+            val old_el = !el
         in 
             FOLLOW := !mp;
-            el := AtomSet.union (!el, AtomMap.lookup(!FIRST, x) handle NotFound => (AtomSet.empty));
-            if (AtomSet.equal (!el, !old_el)) then () 
+            el := AtomSet.union (!el, AtomMap.lookup(!FIRST, x) handle NotFound => (AtomSet.singleton (x)));
+            if (AtomSet.equal (!el, old_el)) then () 
             else (
                 change := true
             );
@@ -148,18 +159,18 @@ fun calculate_follow x rhs =
                     val still_nullable = ref true
                 in
                     if (AtomSet.member(!sym, yi)) then (
-                        if (!i = 0 orelse is_nullable (List.drop (!rhs, !i))) then (
+                        if (!i = k - 1 orelse is_nullable (List.drop (!rhs, !i + 1))) then (
                             add_to_follow_1 yi x
                         ) else ();
                         while (!j < k andalso !still_nullable) do (
-                        let 
-                            val yj = List.nth (!rhs, !j)
-                        in 
-                            add_to_follow_2 yi yj;
-                            still_nullable := is_null(yj)
-                        end;
-                        j := !j + 1
-                    )
+                            let 
+                                val yj = List.nth (!rhs, !j)
+                            in 
+                                add_to_follow_2 yi yj;
+                                still_nullable := is_null(yj)
+                            end;
+                            j := !j + 1
+                        )
                     ) else ()
                 end;
                 i := !i + 1
