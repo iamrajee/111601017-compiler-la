@@ -6,7 +6,8 @@
 
 ### What is this repository for? ###
 
-* Solutions of assignment problem given in lab
+* Complier Project
+* Title : Tiger language to Javascript
 
 ### Who do I talk to? ###
 
