@@ -1,4 +1,4 @@
 mllex tiger.lex
 mlyacc tiger.grm
 mlton source.mlb
-./source tiger2.tig
+./source tiger3.tig
