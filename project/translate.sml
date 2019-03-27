@@ -14,16 +14,18 @@ fun print_expression (Ast.INT x) = print (Int.toString (x))
             (   print_expression x ;
                 print ("\027[1m" ^ " " ^ (Ast.binopDenote bop) ^ " "^"\027[0m") ;
                 print_expression y
-								(* print (" ;") *)
+								(* print_expression y; *)
+								(* print (";") *)
                 )
 | 	print_expression (Ast.LET (x, y)) =
-			(	indent := !indent + 1;	
-				print ("\027[31m"^"let"^"\027[0m" ^ new_line(!indent));
+			(	
+				(* indent := !indent + 1;	 *)
+				(* print ("\027[31m"^"let"^"\027[0m" ^ new_line(!indent)); *)
 				print_decs (x);
-				print ("\027[31m"^"in"^"\027[0m" ^ new_line (!indent));	
-				print_exps (y);
-				indent := !indent - 1;
-				print ("\027[31m"^"end"^"\027[0m")
+				(* print ("\027[31m"^"in"^"\027[0m" ^ new_line (!indent));	 *)
+				print_exps (y)
+				(* indent := !indent - 1; *)
+				(* print ("\027[31m"^"end"^"\027[0m") *)
 
 			)
 | 	print_expression (Ast.ID x) =
