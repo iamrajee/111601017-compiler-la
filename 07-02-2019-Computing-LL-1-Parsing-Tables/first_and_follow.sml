@@ -1,4 +1,5 @@
-use "grammar.sml";
+(*========================================== USE THIS GRAMMER =============================================*)
+use "Grammar.sml";
 
 val FIRST : AtomSet.set AtomMap.map ref = ref AtomMap.empty;
 val FOLLOW : AtomSet.set AtomMap.map ref = ref AtomMap.empty;
@@ -6,11 +7,13 @@ val NULLABLE : bool AtomMap.map ref = ref AtomMap.empty;
 
 val change = ref true;
 
+(*======================================== IS_NULL: single symbol =============================================*)
 fun is_null (s) = 
     (
         AtomMap.lookup (!NULLABLE, s) handle NotFound => false
     );
 
+(*====================================== IS_NULLABLE : list of symbol =============================================*)
 fun is_nullable (x :: xs) = 
     (
         is_null (x) andalso is_nullable (xs)
@@ -20,6 +23,7 @@ fun is_nullable (x :: xs) =
         true
     );
 
+(*====================================== PRINT LIST OF SYMBOL =============================================*)
 fun printAtomList (x :: xs) = 
     (
         print (Atom.toString (x) ^ " ");
@@ -30,6 +34,7 @@ fun printAtomList (x :: xs) =
         print(" ")
     );
 
+(*====================================== INIT FIRST,FOLLOW,NULLABLE =============================================*)
 fun init x = 
     (
         let 
@@ -42,6 +47,7 @@ fun init x =
            
     );
 
+(*====================================== PRINT PRODUCTIONS =============================================*)
 fun print_prods x = 
     (
         let 
@@ -69,6 +75,7 @@ fun print_prods x =
         end
     );
 
+(*====================================== UPDATING NULLABLE =============================================*)
 fun calculate_nullable x rhs = 
     (
         if (is_nullable(!rhs) andalso not (is_null(x))) then (
@@ -78,6 +85,7 @@ fun calculate_nullable x rhs =
             ) else ()
     );
 
+(*====================================== UPDATING FIRST =============================================*)
 fun calculate_first x rhs = 
     (
         let 
@@ -87,7 +95,7 @@ fun calculate_first x rhs =
             val c = ((AtomMap.remove (!FIRST , x)) handle LibBase.NotFound => (!FIRST, AtomSet.empty))
             val (mp , el) = (ref (#1 c) , ref (#2 c))
             val old_el = !el
-        in 
+        in
             FIRST := !mp;
             while (!i < k andalso !still_nullable) do (
                 let 
@@ -177,7 +185,7 @@ fun calculate_follow x rhs =
             )
         end
     )
-
+(*====================================================== ITERATING OVER EACH PRODUCTION ===========================================*)
 fun traverse_prods function x = 
     (
         let 
@@ -193,7 +201,7 @@ fun traverse_prods function x =
             )
         end
     );
-
+(*====================================================== ITERATING OVER EACH SYMBOL ===========================================*)
 fun traverse_sym function = 
     (
         let 
@@ -210,21 +218,24 @@ fun traverse_sym function =
         end
     );
 
+(*====================================================== PRINT ALL PRODUCTION ===========================================*)
 fun print_all_productions () = 
-    (
-        print ("\n=== All productions ===\n");
+    (   
+        print ("\n\n------------------------- START ---------------------------\n\n");
+        print ("\n********  GRAMMER *******\n");
         traverse_sym print_prods;
-        print ("=== ======== ===\n")
+        print ("\n")
     );
-
+(*====================================================== PRINTING SET ======================================================*)
 fun printAtomSet at_set = 
     (
         printAtomList(AtomSet.listItems(at_set))
     );
 
+(*====================================================== HELPER FOR PRINT FIRST FOLLOW ======================================================*)
 fun printFirstFollowHelper [] =  
     (
-        print "=== ======== ===\n"
+        print "\n"
     )
 |   printFirstFollowHelper (x::xs) = 
     (
@@ -238,9 +249,10 @@ fun printFirstFollowHelper [] =
         end
     );
 
+(*====================================================== HELPER FOR PRINT NULLABLE ======================================================*)
 fun printNullableHelper [] = 
     (
-        print "=== ======== ===\n"
+        print "\n"
     )
 |   printNullableHelper (x::xs) = 
     (
@@ -251,33 +263,33 @@ fun printNullableHelper [] =
             printNullableHelper xs
         end
     );
-
+(*====================================================== PRINT NULLABLE ===================================================================*)
 fun printNullable () =  
     (
         let
             val nullable_lst = AtomMap.listItemsi (!NULLABLE)
         in
-            (print ("\n=== NULLABLE ===\n");
+            (print ("\n********** NULLABLE SYMBOLS ******** \n");
             printNullableHelper nullable_lst)
         end
     );
-
+(*====================================================== PRINT FOLLOW ===================================================================*)
 fun printFollow () = 
     (
         let
             val follow_lst = AtomMap.listItemsi (!FOLLOW)
         in
-            (print ("\n=== FOLLOW ===\n");
+            (print ("\n*********** FOLLOW *************\n");
             printFirstFollowHelper follow_lst)
         end
     );
-
+(*====================================================== PRINT FIRST ===================================================================*)
 fun printFirst () = 
     (
         let
             val first_lst = AtomMap.listItemsi (!FIRST)
         in
-            (print ("\n=== FIRST ===\n");
+            (print ("\n************ FIRST **********\n");
             printFirstFollowHelper first_lst)
         end
     );
@@ -285,6 +297,7 @@ fun printFirst () =
 print_all_productions();
 traverse_sym init;
 
+(*===================================== ITERATING : FOR EACH SYMBOL  FOR EACH PRODUCTIONS CALL FUCTION(sym,prod) ====================*)
 fun calculate function = 
     (
         change := true;

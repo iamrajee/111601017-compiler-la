@@ -1,4 +1,4 @@
-use "first.sml";
+use "first_and_follow.sml";
 
 structure LLONE_KEY : ORD_KEY = struct
     type ord_key = (Atom.atom * Atom.atom)
@@ -150,4 +150,3 @@ init_lpt ();
 calculate calculate_table;
 
 print_table ()
-
