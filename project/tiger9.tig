@@ -1,0 +1,64 @@
+/*------------------------IF-ELSE-----------------------*/
+if 4 + 2 +1+2+3+4 then 3 - 1 +4+9-6+5 else if 4 + 2 +1+2+3+4 then 3 - 1 +4+9-6+5 else if 4 + 2 +1+2+3+4 then if 4 + 2 +1+2+3+4 then 3 - 1 +4+9-6+5 else 4 - 5 else if 4 + 2 +1+2+3+4 then 3 - 1 +4+9-6+5 else if 4 + 2 +1+2+3+4 then 3 - 1 +4+9-6+5 else if 4 + 2 +1+2+3+4 then if 4 + 2 +1+2+3+4 then 3 - 1 +4+9-6+5 else 4 - 5 else if 4 + 2 +1+2+3+4 then 3 - 1 +4+9-6+5 else if 4 + 2 +1+2+3+4 then 3 - 1 +4+9-6+5 else if 4 + 2 +1+2+3+4 then if 4 + 2 +1+2+3+4 then 3 - 1 +4+9-6+5 else 4 - 5 else if 4 + 2 +1+2+3+4 then 3 - 1 +4+9-6+5 else if 4 + 2 +1+2+3+4 then 3 - 1 +4+9-6+5 else if 4 + 2 +1+2+3+4 then if 4 + 2 +1+2+3+4 then 3 - 1 +4+9-6+5 else 4 - 5 else if 4 + 2 +1+2+3+4 then 3 - 1 +4+9-6+5 else if 4 + 2 +1+2+3+4 then 3 - 1 +4+9-6+5 else if 4 + 2 +1+2+3+4 then if 4 + 2 +1+2+3+4 then 3 - 1 +4+9-6+5 else 4 - 5 else if 4 + 2 +1+2+3+4 then 3 - 1 +4+9-6+5 else if 4 + 2 +1+2+3+4 then 3 - 1 +4+9-6+5 else if 4 + 2 +1+2+3+4 then if 4 + 2 +1+2+3+4 then 3 - 1 +4+9-6+5 else 4 - 5 else if 4 + 2 +1+2+3+4 then 3 - 1 +4+9-6+5 else if 4 + 2 +1+2+3+4 then 3 - 1 +4+9-6+5 else if 4 + 2 +1+2+3+4 then if 4 + 2 +1+2+3+4 then 3 - 1 +4+9-6+5 else 4 - 5 else if 4 + 2 +1+2+3+4 then 3 - 1 +4+9-6+5 else if 4 + 2 +1+2+3+4 then 3 - 1 +4+9-6+5 else if 4 + 2 +1+2+3+4 then if 4 + 2 +1+2+3+4 then 3 - 1 +4+9-6+5 else 4 - 5 else 4 - 5;
+
+/*
+	THIS IS 
+	/*NESTED /*NESTED /*NESTED 
+    /*NESTED 
+    /*NESTED /*NESTED /*NESTED 
+    /*NESTED  */ */ */ */ */ */ */ */
+	            MULTI-LINE COMMENT
+    MULTI-LINE COMMENT
+            MULTI-LINE COMMENT        MULTI-LINE COMMENT
+    MULTI-LINE COMMENT              
+                MULTI-LINE COMMENT
+*/
+
+/*------------------------ SIMPLE LET-----------------------*/
+let 
+	var    a :=  2     + 3;
+	var b    :=    4    - 4;
+	var    c := 3 -      2
+in 
+	print(a    +   b)
+end;
+
+/*------------------------FUNCTION-----------------------*/
+funA (3 - 3     , 4 +      a- 6);
+            funB(a    +   b);
+funC(a    +   b);           funD(a    +   b);
+            funE(a    +   b);
+funF(a    +   b);  funG(a    +   b);
+
+                    funA (3 - 3     , 4 +      a- 6);
+            funB(a    +   b);
+funC(a    +   b);   
+          funD(a    +   b);
+                            funE(a    +   b);
+funF(a    +   b);
+                          funG(a    +   b);
+/*------------------- Built-in FUNCTION ------------------------------*/
+
+print(' Printing from built-in function ');
+
+
+/*------------------------WHITESPACES-----------------------*/
+
+
+
+
+
+
+
+/*------------------------NESTED LET AND FUNCTIONS-----------------------*/
+										let var    e :=  2     + 3 -5;
+in 
+										let var    a :=  2     + 3;
+var b    :=    4    - 4;
+								var    c := 3 -      2;
+var    d := ' Hi there, how are you? ' in 
+print(3           + 4       +       5-                  6,                 'rajee'         )              ;
+						print(a    +   b);
+print(d)
+			end;   print(e)
+												end;

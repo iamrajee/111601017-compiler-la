@@ -1,0 +1,9 @@
+3+4;
+
+let 
+	var    a :=  2     + 3;
+	var b    :=    4    - 4;
+	var    c := 3 -      2
+in 
+	print(a    +   b)
+end;

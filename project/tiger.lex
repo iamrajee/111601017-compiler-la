@@ -23,8 +23,10 @@ fun IntFromString str = let
 digit = [0-9] ;
 eol = ("\n\r"|"\r\n"|"\r"|"\n") ;
 whitespace = (" "|\t)  ;
+str_m = ("'")  ;
 letter = [a-zA-Z]   ;
 esc = ("\a"|"\b"|"\f"|"\n"|"\r"|"\t"|"\v");
+symbol=","|":"|";"|"("|")"|"["|"]"|"{"|"}"|"."|"+"|"-"|"*"|"/"|"="|"<>"|"<"|"<="|">"|">="|"&"|"|"|":="|"?";
 %%
 
 <INITIAL> "/*"    => (
@@ -65,7 +67,11 @@ esc = ("\a"|"\b"|"\f"|"\n"|"\r"|"\t"|"\v");
 <INITIAL> "else"      => (Tokens.ELSE(yypos, yypos + 4));
 <INITIAL> "function"  => (Tokens.FUNCTION(yypos, yypos + 8));
 
-<INITIAL> ({letter}({letter}|{digit}|"_")*) | ("_main")
+<INITIAL> (({str_m})({letter}|{digit}|"_"|" "|{symbol}|"\n")*{str_m})
+            =>  (Tokens.ID(yytext, yypos,
+                    yypos + size yytext));
+
+<INITIAL> (({letter})({letter}|{digit}|"_")*) | ("_main")
             =>  (Tokens.ID(yytext, yypos,
                     yypos + size yytext));
 

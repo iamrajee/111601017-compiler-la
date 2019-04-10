@@ -1,0 +1,15 @@
+/*------------------------NESTED LET AND FUNCTIONS-----------------------*/
+let 
+var    a :=  2     + 3;
+var b    :=    4    - 4;
+var    c := 3 -      2
+in 
+let 
+var a		 := 2 + 3
+in 
+print(a - b);
+funB (3 - 3     , 4 +      a- 6); funC (3 - 3     , 4 +      a- 6); 
+
+	end;
+	print(a    +   b)
+end;
