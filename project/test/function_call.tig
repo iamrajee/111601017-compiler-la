@@ -1,0 +1,14 @@
+/*------------------------FUNCTION-----------------------*/
+funA (3 - 3     , 4 +      a- 6);
+            funB(a    +   b);
+funC(a    +   b);           funD(a    +   b);
+            funE(a    +   b);
+funF(a    +   b);  funG(a    +   b);
+
+                    funA (3 - 3     , 4 +      a- 6);
+            funB(a    +   b);
+funC(a    +   b);   
+          funD(a    +   b);
+                            funE(a    +   b);
+funF(a    +   b);
+                          funG(a    +   b);

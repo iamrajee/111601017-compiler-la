@@ -26,12 +26,20 @@
 %noshift EOF
 
 %right COLON
-%left TIMES DIVIDE
-%left PLUS MINUS
+%left TIMES
+%left DIVIDE
+%left PLUS
+%left MINUS
+%left INT
 %right EQ
+%right ASSIGN
 %left COMMA
 %left SEMICOLON
-
+%left LET
+%left IN
+%left END
+%left VAR
+%left FUNCTION
 
 %name Tiger
 

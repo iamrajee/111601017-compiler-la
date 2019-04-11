@@ -120,6 +120,4 @@ fun compile []        = ()
 
 end
 
-
-
 (* writeFile "/home/rajendra/111601017-compiler-lab/project/write.txt" "hi" *)
